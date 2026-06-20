@@ -1,0 +1,10 @@
+pages:
+  script:
+    - mkdir public
+    - cp *.html public/
+    - cp -r * public/ || true # This copies your CSS/images if they are in folders
+  artifacts:
+    paths:
+      - public
+  only:
+    - main # Or 'master', depending on your default branch name
