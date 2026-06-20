@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Venkatesh Kuruvella – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --surface2: #1a1a24;
+  --border: rgba(255,255,255,0.08);
+  --text: #f0f0f5;
+  --muted: #888899;
+  --accent1: #7c3aed;
+  --accent2: #06b6d4;
+  --accent3: #f59e0b;
+  --accent4: #10b981;
+  --grad1: linear-gradient(135deg, #7c3aed, #06b6d4);
+  --grad2: linear-gradient(135deg, #f59e0b, #ef4444);
+  --grad3: linear-gradient(135deg, #10b981, #06b6d4);
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+a { color: var(--accent2); text-decoration: none; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10,10,15,0.85); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem; height: 60px;
+}
+.nav-name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; font-weight: 500; }
+.nav-links a:hover { color: var(--text); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 8rem 3rem 6rem; max-width: 1100px; margin: 0 auto;
+  position: relative;
+}
+.hero-glow {
+  position: absolute; top: 20%; left: -10%; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute; top: 40%; right: -5%; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; color: var(--accent2);
+  background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.2);
+  padding: 6px 14px; border-radius: 100px; margin-bottom: 2rem; letter-spacing: 0.06em;
+}
+.hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); display: inline-block; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.hero h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+.hero h1 .grad { background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-desc { font-size: 18px; color: var(--muted); max-width: 600px; line-height: 1.8; margin-bottom: 3rem; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--grad1); color: #fff; font-size: 15px; font-weight: 600;
+  padding: 13px 28px; border-radius: 100px; border: none; cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--text); font-size: 15px; font-weight: 600;
+  padding: 12px 28px; border-radius: 100px; border: 1px solid var(--border); cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-1px); }
+.hero-badges { display: flex; gap: 10px; flex-wrap: wrap; }
+.badge {
+  font-family: var(--mono); font-size: 11px; padding: 5px 12px;
+  border: 1px solid var(--border); border-radius: 6px; color: var(--muted); background: var(--surface);
+}
+
+/* SECTIONS */
+section { padding: 6rem 0; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+.section-header { margin-bottom: 3.5rem; }
+.section-tag { font-family: var(--mono); font-size: 11px; color: var(--accent1); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
+.section-tag::before { content: ''; display: block; width: 20px; height: 2px; background: var(--accent1); border-radius: 2px; }
+h2.section-title { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.02em; }
+
+/* STATS */
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 5rem; }
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 2rem; position: relative; overflow: hidden;
+}
+.stat-card::before { content: ''; position: absolute; inset: 0; background: var(--grad); opacity: 0.05; }
+.stat-card.c1 { --grad: var(--grad1); }
+.stat-card.c2 { --grad: var(--grad2); }
+.stat-card.c3 { --grad: var(--grad3); }
+.stat-num { font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 6px; }
+.stat-card.c1 .stat-num { background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-card.c2 .stat-num { background: var(--grad2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-card.c3 .stat-num { background: var(--grad3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-label { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+.skill-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 1.5rem; transition: border-color 0.2s, transform 0.2s;
+}
+.skill-card:hover { border-color: rgba(124,58,237,0.4); transform: translateY(-2px); }
+.skill-icon {
+  width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center;
+  justify-content: center; margin-bottom: 1rem; font-size: 20px;
+}
+.skill-icon.v1 { background: rgba(124,58,237,0.15); }
+.skill-icon.v2 { background: rgba(6,182,212,0.15); }
+.skill-icon.v3 { background: rgba(245,158,11,0.15); }
+.skill-icon.v4 { background: rgba(16,185,129,0.15); }
+.skill-icon.v5 { background: rgba(239,68,68,0.15); }
+.skill-icon.v6 { background: rgba(236,72,153,0.15); }
+.skill-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 0.75rem; color: var(--text); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: var(--mono); font-size: 11px; padding: 3px 9px;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--muted);
+}
+
+/* EXPERIENCE */
+.exp-timeline { position: relative; padding-left: 2rem; }
+.exp-timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(to bottom, var(--accent1), var(--accent2)); border-radius: 2px; }
+.exp-item { position: relative; padding: 0 0 3rem 2.5rem; }
+.exp-dot {
+  position: absolute; left: -2.55rem; top: 4px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--grad1); border: 2px solid var(--bg);
+}
+.exp-period { font-family: var(--mono); font-size: 11px; color: var(--accent2); letter-spacing: 0.06em; margin-bottom: 6px; }
+.exp-role { font-size: 20px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.01em; }
+.exp-company { font-size: 14px; color: var(--accent1); font-weight: 600; margin-bottom: 1rem; }
+.exp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
+.exp-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem; }
+.exp-card li { font-size: 14px; color: var(--muted); line-height: 1.7; padding-left: 1.2rem; position: relative; }
+.exp-card li::before { content: '→'; position: absolute; left: 0; color: var(--accent2); font-size: 12px; top: 3px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-family: var(--mono); font-size: 11px; padding: 3px 10px;
+  border-radius: 100px; font-weight: 500;
+}
+.chip.purple { background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3); }
+.chip.cyan { background: rgba(6,182,212,0.15); color: #67e8f9; border: 1px solid rgba(6,182,212,0.3); }
+.chip.amber { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+.chip.green { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+
+/* PROJECTS */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+.project-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 1.75rem; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden;
+}
+.project-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--pgrad); }
+.project-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.15); }
+.project-card.p1 { --pgrad: var(--grad1); }
+.project-card.p2 { --pgrad: var(--grad2); }
+.project-card.p3 { --pgrad: var(--grad3); }
+.project-card.p4 { --pgrad: linear-gradient(135deg, #ec4899, #a855f7); }
+.proj-num { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 1rem; letter-spacing: 0.1em; }
+.proj-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.proj-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+/* CERTIFICATIONS */
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+.cert-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.cert-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.15); }
+.cert-badge {
+  width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.cert-badge.oracle { background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(239,68,68,0.2)); border: 1px solid rgba(245,158,11,0.3); }
+.cert-badge.cloud { background: linear-gradient(135deg, rgba(6,182,212,0.2), rgba(59,130,246,0.2)); border: 1px solid rgba(6,182,212,0.3); }
+.cert-badge.ai { background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(236,72,153,0.2)); border: 1px solid rgba(124,58,237,0.3); }
+.cert-badge.dl { background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(6,182,212,0.2)); border: 1px solid rgba(16,185,129,0.3); }
+.cert-info { flex: 1; min-width: 0; }
+.cert-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; line-height: 1.4; }
+.cert-issuer { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.cert-year { font-size: 11px; color: var(--accent2); font-family: var(--mono); margin-top: 4px; }
+
+/* CONTACT */
+.contact-wrapper {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+  padding: 3rem; text-align: center; position: relative; overflow: hidden;
+}
+.contact-wrapper::before {
+  content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.contact-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.contact-desc { font-size: 16px; color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.7; }
+.contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.contact-link {
+  display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600;
+  color: var(--text); background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 100px; padding: 12px 20px; transition: border-color 0.2s, transform 0.2s;
+}
+.contact-link:hover { border-color: rgba(124,58,237,0.5); transform: translateY(-2px); }
+.contact-link svg { width: 16px; height: 16px; stroke: var(--accent2); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+footer { text-align: center; padding: 3rem 1rem 2rem; font-family: var(--mono); font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); }
+
+/* DIVIDER */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Venkatesh Kuruvella</span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span></span> Available for opportunities</div>
+    <h1>Operations<br />Engineer &amp;<br /><span class="grad">Tech Analyst.</span></h1>
+    <p class="hero-desc">2+ years delivering L1–L3 production support, coordinating deployments, and managing incidents in enterprise telecom environments — with a track record of zero major post-release issues.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#contact">Get in touch →</a>
+      <a class="btn-secondary" href="#experience">View experience</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge">📍 Bengaluru, India</span>
+      <span class="badge">🏢 Accenture · Telecom Ops</span>
+      <span class="badge">⚙️ Jenkins · Linux · AWS</span>
+      <span class="badge">📊 ELK · Dynatrace</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<section style="padding-top: 0;">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card c1">
+        <div class="stat-num">400+</div>
+        <div class="stat-label">Production incidents resolved within SLA</div>
+      </div>
+      <div class="stat-card c2">
+        <div class="stat-num">120+</div>
+        <div class="stat-label">Application deployments coordinated</div>
+      </div>
+      <div class="stat-card c3">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Change management processes handled</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-tag">Technical skills</p>
+      <h2 class="section-title">What I bring<br />to the table</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon v1">🛡️</div>
+        <h3>Operations & Support</h3>
+        <div class="tags"><span class="tag">L1–L3 Support</span><span class="tag">Incident Mgmt</span><span class="tag">RCA</span><span class="tag">Major Incident</span><span class="tag">SLA Mgmt</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon v2">🚀</div>
+        <h3>CI/CD & Deployments</h3>
+        <div class="tags"><span class="tag">Jenkins</span><span class="tag">GitLab</span><span class="tag">CI/CD</span><span class="tag">Release Coord.</span><span class="tag">Change Mgmt</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon v3">☁️</div>
+        <h3>Infrastructure & Cloud</h3>
+        <div class="tags"><span class="tag">Unix/Linux</span><span class="tag">AWS EC2</span><span class="tag">FTP/SFTP</span><span class="tag">Windows Server</span><span class="tag">PuTTY</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon v4">📊</div>
+        <h3>Monitoring & Observability</h3>
+        <div class="tags"><span class="tag">ELK Stack</span><span class="tag">Dynatrace</span><span class="tag">Performance Analysis</span><span class="tag">Log Analysis</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon v5">🗄️</div>
+        <h3>Data & API</h3>
+        <div class="tags"><span class="tag">SQL</span><span class="tag">Postman</span><span class="tag">API Testing</span><span class="tag">Data Validation</span><span class="tag">Troubleshooting</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon v6">🔧</div>
+        <h3>Platforms & Practices</h3>
+        <div class="tags"><span class="tag">ServiceNow</span><span class="tag">AWS Console</span><span class="tag">Vulnerability Remediation</span><span class="tag">Security Compliance</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-tag">Work experience</p>
+      <h2 class="section-title">Career journey</h2>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <p class="exp-period">FEB 2024 — PRESENT</p>
+        <p class="exp-role">Packaged App Development Analyst</p>
+        <p class="exp-company">Accenture India Private Limited · Telecom Operations</p>
+        <div class="exp-card">
+          <ul>
+            <li>Delivered L1–L3 production support for telecom applications covering mobile order provisioning, fulfilment, and billing operations.</li>
+            <li>Investigated and resolved 400+ production incidents within SLA timelines; led Major Incident Management activities during critical outages.</li>
+            <li>Coordinated 120+ application deployments and version upgrades using Jenkins — achieving zero major post-release issues.</li>
+            <li>Participated in 200+ Change Management processes including deployment planning, implementation, and post-release validation.</li>
+            <li>Executed SQL queries for data validation, troubleshooting, issue analysis, and operational reporting.</li>
+            <li>Performed proactive system monitoring via ELK Stack and Dynatrace to maintain high application availability.</li>
+            <li>Validated and tested APIs using Postman for application troubleshooting and integration verification.</li>
+            <li>Tracked, analyzed, and remediated application vulnerabilities to meet security compliance requirements.</li>
+            <li>Prepared operational documentation, RCA documents, incident reports, and knowledge-sharing materials.</li>
+          </ul>
+          <div class="chips">
+            <span class="chip purple">Jenkins</span>
+            <span class="chip cyan">ELK Stack</span>
+            <span class="chip cyan">Dynatrace</span>
+            <span class="chip amber">SQL</span>
+            <span class="chip green">Linux</span>
+            <span class="chip cyan">AWS EC2</span>
+            <span class="chip purple">ServiceNow</span>
+            <span class="chip amber">Postman</span>
+            <span class="chip green">GitLab</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-tag">Projects</p>
+      <h2 class="section-title">Key initiatives</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card p1">
+        <p class="proj-num">01 / PROJECT</p>
+        <p class="proj-title">Telecom Order Provisioning</p>
+        <p class="proj-desc">Supported customer mobile order provisioning workflows. Investigated order failures and performed data corrections using SQL queries to ensure continuous business operations.</p>
+      </div>
+      <div class="project-card p2">
+        <p class="proj-num">02 / PROJECT</p>
+        <p class="proj-title">Billing File Transfer Application</p>
+        <p class="proj-desc">Managed application support for billing-related file transfers. Diagnosed SFTP and firewall-related processing failures in collaboration with infrastructure teams.</p>
+      </div>
+      <div class="project-card p3">
+        <p class="proj-num">03 / PROJECT</p>
+        <p class="proj-title">Service Order Management</p>
+        <p class="proj-desc">Assisted service activation and order management processes. Performed incident troubleshooting analysis and carried out deployment validation across environments.</p>
+      </div>
+      <div class="project-card p4">
+        <p class="proj-num">04 / PROJECT</p>
+        <p class="proj-title">Commission File Generation</p>
+        <p class="proj-desc">Managed production support activities for commission processing workflows. Validated data accuracy and investigated processing discrepancies to maintain integrity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-tag">Certifications</p>
+      <h2 class="section-title">Credentials &<br />qualifications</h2>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-badge oracle">🔶</div>
+        <div class="cert-info">
+          <p class="cert-name">Oracle Cloud Infrastructure 2025 AI Foundations Associate</p>
+          <p class="cert-issuer">Oracle</p>
+          <p class="cert-year">2025</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge ai">🤖</div>
+        <div class="cert-info">
+          <p class="cert-name">Oracle Fusion AI Agent Studio Certified Foundations Associate – Rel 1</p>
+          <p class="cert-issuer">Oracle</p>
+          <p class="cert-year">2025</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge dl">🧠</div>
+        <div class="cert-info">
+          <p class="cert-name">Deep Learning Specialization</p>
+          <p class="cert-issuer">Coursera · DeepLearning.AI</p>
+          <p class="cert-year">Verified</p>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 2rem; font-size: 13px; color: var(--muted); font-family: var(--mono);">
+      // Additional certifications from LinkedIn will be added here
+    </p>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- EDUCATION -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <p class="section-tag">Education</p>
+      <h2 class="section-title">Academic background</h2>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-item" style="padding-bottom: 0;">
+        <div class="exp-dot"></div>
+        <p class="exp-period">2019 — 2023</p>
+        <p class="exp-role">Bachelor of Technology (B.Tech)</p>
+        <p class="exp-company">Narasaraopeta Engineering College</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <p class="contact-title">Let's work together</p>
+      <p class="contact-desc">Open to full-time roles in Production Operations, Application Support, Release Management, and DevOps engineering.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:kuruvellavenkatesh01@gmail.com">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          kuruvellavenkatesh01@gmail.com
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/venkatesh-k-5573b5223/" target="_blank">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4M11 10v7"/></svg>
+          LinkedIn
+        </a>
+        <a class="contact-link" href="tel:+917731991218">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          +91 77319 91218
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Venkatesh Kuruvella · Technology Analyst · Bengaluru, India · 2026</footer>
+
+</body>
+</html>
