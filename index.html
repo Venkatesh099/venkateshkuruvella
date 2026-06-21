@@ -84,6 +84,13 @@ nav {
   transition: border-color 0.2s, transform 0.2s;
 }
 .btn-secondary:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-1px); }
+.btn-download {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(16,185,129,0.12); color: #6ee7b7; font-size: 15px; font-weight: 600;
+  padding: 12px 28px; border-radius: 100px; border: 1px solid rgba(16,185,129,0.35); cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-download:hover { background: rgba(16,185,129,0.22); transform: translateY(-1px); }
 .hero-badges { display: flex; gap: 10px; flex-wrap: wrap; }
 .badge {
   font-family: var(--mono); font-size: 11px; padding: 5px 12px;
@@ -254,6 +261,10 @@ footer { text-align: center; padding: 3rem 1rem 2rem; font-family: var(--mono); 
     <div class="hero-actions">
       <a class="btn-primary" href="#contact">Get in touch →</a>
       <a class="btn-secondary" href="#experience">View experience</a>
+      <a class="btn-download" href="Venkatesh_Kuruvella_Resume.docx" download="Venkatesh_Kuruvella_Resume.docx">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
     </div>
     <div class="hero-badges">
       <span class="badge">📍 Bengaluru, India</span>
